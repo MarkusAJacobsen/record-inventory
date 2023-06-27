@@ -15,12 +15,7 @@ public class RecordService {
     }
 
     public Record getRecord(Integer recordId) {
-        Optional<Record> record =  recordRepository.findById(recordId);
-
-        if (record.isPresent()) {
-            return record.get();
-        }
-        return null;
+        return recordRepository.findById(recordId).orElseThrow(() -> new RecordNotFoundException(recordId));
     }
 
     public Collection<Record> listRecords() {
@@ -28,6 +23,9 @@ public class RecordService {
     }
 
     public Record addRecord(Record record) {
+        if(recordRepository.existsByTitle(record.getTitle())) {
+            throw new RecordAlreadyExistsException(record.getTitle());
+        }
         return recordRepository.save(record);
     }
 
