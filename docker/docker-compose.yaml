@@ -4,7 +4,7 @@ services:
   record-product-api:
     depends_on:
       - record-postgres
-    image: "record-inventory-api"
+    image: "ghcr.io/markusajacobsen/record-inventory-api"
     container_name: "record-inventory-api"
     ports:
       - "9001:9001"

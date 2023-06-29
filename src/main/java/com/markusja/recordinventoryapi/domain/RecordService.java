@@ -3,7 +3,6 @@ package com.markusja.recordinventoryapi.domain;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Optional;
 
 @Service
 public class RecordService {
@@ -42,6 +41,8 @@ public class RecordService {
                             record.getFormat(),
                             record.getGenre(),
                             record.getNrOfTracks(),
+                            record.getThumbnail(),
+                            record.getProducer(),
                             record.getQuantity(),
                             existingRecord.getVersion()
                     );

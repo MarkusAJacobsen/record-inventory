@@ -19,7 +19,7 @@ import java.util.Objects;
 @Setter
 public class Record {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotBlank
@@ -40,6 +40,10 @@ public class Record {
 
     private Integer nrOfTracks;
 
+    private String thumbnail;
+
+    private String producer;
+
     @Min(1)
     @Positive
     @NotNull
@@ -51,7 +55,9 @@ public class Record {
     public Record() {
     }
 
-    public Record(Integer id, String title, String artist, String label, String country, Integer year, String format, String genre, Integer nrOfTracks, Integer quantity, Integer version) {
+    public Record(Integer id, String title, String artist, String label, String country, Integer year, String format,
+                  String genre, Integer nrOfTracks, String thumbnail, String producer, @NotNull Integer quantity,
+                  Integer version) {
         this.id = id;
         this.title = title;
         this.artist = artist;
@@ -61,6 +67,8 @@ public class Record {
         this.format = format;
         this.genre = genre;
         this.nrOfTracks = nrOfTracks;
+        this.thumbnail = thumbnail;
+        this.producer = producer;
         this.quantity = quantity;
         this.version = version;
     }
@@ -70,17 +78,17 @@ public class Record {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Record record = (Record) o;
-        return id == record.id && Objects.equals(title, record.title) && Objects.equals(artist, record.artist) && Objects.equals(label, record.label) && Objects.equals(country, record.country) && Objects.equals(year, record.year) && Objects.equals(format, record.format) && Objects.equals(genre, record.genre) && Objects.equals(nrOfTracks, record.nrOfTracks) && Objects.equals(quantity, record.quantity) && Objects.equals(version, record.version);
+        return Objects.equals(id, record.id) && Objects.equals(title, record.title) && Objects.equals(artist, record.artist) && Objects.equals(label, record.label) && Objects.equals(country, record.country) && Objects.equals(year, record.year) && Objects.equals(format, record.format) && Objects.equals(genre, record.genre) && Objects.equals(nrOfTracks, record.nrOfTracks) && Objects.equals(thumbnail, record.thumbnail) && Objects.equals(producer, record.producer) && Objects.equals(quantity, record.quantity) && Objects.equals(version, record.version);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, artist, label, country, year, format, genre, nrOfTracks, quantity, version);
+        return Objects.hash(id, title, artist, label, country, year, format, genre, nrOfTracks, thumbnail, producer, quantity, version);
     }
 
     @Override
     public String toString() {
-        return "Record{" + "id=" + id + ", title='" + title + '\'' + ", artist='" + artist + '\'' + ", label='" + label + '\'' + ", country='" + country + '\'' + ", year=" + year + ", format='" + format + '\'' + ", genre='" + genre + '\'' + ", nrOfTracks=" + nrOfTracks + ", quantity=" + quantity + ", version=" + version + '}';
+        return "Record{" + "id=" + id + ", title='" + title + '\'' + ", artist='" + artist + '\'' + ", label='" + label + '\'' + ", country='" + country + '\'' + ", year=" + year + ", format='" + format + '\'' + ", genre='" + genre + '\'' + ", nrOfTracks=" + nrOfTracks + ", thumbnail='" + thumbnail + '\'' + ", producer='" + producer + '\'' + ", quantity=" + quantity + ", version=" + version + '}';
     }
 
     public Integer getId() {
@@ -169,5 +177,21 @@ public class Record {
 
     public void setVersion(Integer version) {
         this.version = version;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    public String getProducer() {
+        return producer;
+    }
+
+    public void setProducer(String producer) {
+        this.producer = producer;
     }
 }
